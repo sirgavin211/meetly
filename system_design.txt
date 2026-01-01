@@ -1,0 +1,28 @@
+
+
+Create Hangout Flow ->
+
+
+Inputs ->
+    - hangout name
+    - date and time
+    - location(s)
+    - optional notes
+
+Member Profiles ->
+    Which each indivdally have ->
+        - name
+        - avatar
+        - default family setup
+
+
+
+Total bill -> $300
+
+THREE FAMILIES
+    - DAWSONG TAN (HOST)
+    - TAN FAMILY
+        - 2 children
+        - 
+    - JEONG FAMILY
+    - LI FAMILY
