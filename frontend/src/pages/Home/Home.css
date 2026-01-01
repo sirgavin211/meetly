@@ -1,0 +1,140 @@
+.home {
+    /* full-page background */
+    padding-top: 50px;
+    max-height: 80%;
+    width: 100%;
+    margin: 0;
+    background-color: var(--primary-color); /* updated per request */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    position: relative; 
+    font-family: 'Poppins', sans-serif;
+}
+
+.home button{
+    font-family: 'Poppins', sans-serif;
+}
+
+.home::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("../../assets/images/bottom-banner.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.15;          /* subtle, cozy */
+    z-index: 0;
+}
+
+.content{
+    margin-left: 40px;
+    padding-top:40px;
+    flex: 1;
+    padding: 2rem;
+    z-index: 1;
+    width: 20%;
+    height:100%;
+}
+
+.coffee-image{
+    width: 100%;
+    height: 68%;
+    flex-shrink: 0;       /* prevents flex resizing */
+    object-fit: cover;
+    display: block;      
+}
+
+.background-elements {
+  width: 70%;
+  height: 100%;              /* adjust as needed */
+  position: relative;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+
+/* Header */
+.home-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+}
+
+.home-header p {
+    margin-top: 0.25rem;
+    opacity: 0.85;
+    color: var(--text-color);
+}
+
+/* Quick Actions */
+.quick-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+button {
+    border-radius: 12px;
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+button.primary {
+    background: var(--accent-color);
+    border: none;
+    color: var(--text-color);
+}
+
+button.secondary {
+    background: var(--secondary-color);
+    border: none;
+    color: var(--text-color);
+}
+
+/* Hangouts section */
+.hangouts {
+    
+    margin-top: 2rem;
+}
+
+.hangouts h2{
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+}
+
+.hangouts p{
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+}
+
+
+/* Empty Card */
+.empty-card {
+    background: var(--primary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    max-width: 420px;
+}
+
+.empty-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.empty-card h2 {
+    margin-bottom: 0.25rem;
+}
+
+.empty-card p {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-bottom: 1.25rem;
+}
