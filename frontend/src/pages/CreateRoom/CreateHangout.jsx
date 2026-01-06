@@ -1,9 +1,17 @@
 import "./CreateHangout.css";
 import CoffeeImage from "../../assets/images/better.png";
 import Navbar from "../../components/Navbar/Navbar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function CreateHangout(){
+
+    const [hangout_data, setData] = useState({
+        name: "",
+        date: "",
+        location: "",
+        optional_notes: "",
+        include_host: false,
+    });
 
 
     useEffect(() => {

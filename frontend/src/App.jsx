@@ -5,7 +5,7 @@ import Profile from "./pages/Profile/Profile.jsx";
 import CreateHangout from './pages/CreateRoom/CreateHangout.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <Routes>
