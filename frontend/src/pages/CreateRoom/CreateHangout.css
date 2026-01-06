@@ -1,0 +1,138 @@
+
+.createhangout {
+  max-height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: var(--primary-color); /* updated per request */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  position: relative; 
+  font-family: 'Poppins', sans-serif;
+  padding-left: 50px;
+}
+
+
+.background-elements {
+  padding-top: 50px;
+  width: 60%;
+  height: 100%;              /* adjust as needed */
+  position: relative;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+.content h1{
+  font-size: 29px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+}
+
+
+
+.card{
+
+  background: var(--primary-color);
+  border: 1px solid var(--text-color);
+  border-radius: 16px;
+  padding: 2rem;
+  /* text-align: center; */
+  max-width: 250px;
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.form{
+  display: block;
+  margin-top: 40px;
+}
+
+.card label{
+  font-size: 18px;
+  font-weight: 700;
+  display:block;
+  margin-top: 5px;
+}
+
+/* Checkbox-specific label: smaller, default text font, lighter weight */
+.card label.checkboxLabel{
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 10px;
+  display: block;
+  /* inset the checkbox slightly from the card's left edge
+     card has padding-left: 20px; margin-left: -12px results in ~8px gap */
+  margin-left: -12px;
+}
+
+.caption{
+  line-height: 1.2;
+  margin-top: 20px;
+  opacity: 0.7;
+  display: block;
+
+}
+
+.card input[type="text"]{
+  width: 240px;
+  border: 1px solid var(--text-color);
+  margin-top: 10px;
+  padding: 10px 10px;
+}
+
+/* Keep checkboxes small and visible */
+.card input[type="checkbox"]{
+  width: auto;
+  height: auto;
+  margin-right: 12px;
+  vertical-align: middle;
+  /* Enlarge the native checkbox for better touch targets */
+  transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  transform-origin: left center;
+  /* Keep layout stable after scaling */
+  display: inline-block;
+  margin-left: 10px;
+}
+
+
+
+.card input::placeholder{
+  color: #646262;
+}
+
+
+
+.card .line{
+  height: 2px;
+  background-color: #919d7b;
+  border: none;
+  margin-top: 20px;
+  width: 230px;
+  margin-left: 15px;
+
+}
+
+.card .continue_button{
+  width: 260px;
+  text-align: left;
+  border-radius: 12px;
+  margin-top: 20px;
+  height: 48px;
+  padding: 10px 10px;
+  background-color: var(--accent-color);
+  border: 1px solid #ad9072;
+  transition: background-color, color ease-in-out .3s;
+  transition-delay: 0.3s;
+  cursor: pointer;
+  color: #3B2E24;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  white-space: normal;
+}
+

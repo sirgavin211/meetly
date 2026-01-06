@@ -61,8 +61,8 @@ function Navbar({
 
                 <nav className="side-nav">
                     <Link to="/"> 🏠 Home </Link>
-                    <Link to="/create"> ➕ Create Hangout </Link>
-                    <Link to="/join"> 🔗 Join Hangout </Link>
+                    <Link to="/createhangout"> ➕ Create Hangout </Link>
+                    <Link to="/joinhangout"> 🔗 Join Hangout </Link>
                     <Link to="/profile"> 👤 Profile </Link>
                 </nav>
             </aside>

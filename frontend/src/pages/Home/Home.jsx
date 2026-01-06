@@ -2,6 +2,7 @@ import Navbar from "../../components/Navbar/Navbar.jsx";
 import "./Home.css";
 import CoffeeImage from "../../assets/images/better.png";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Home({hangouts = []}){
 
@@ -11,7 +12,7 @@ export default function Home({hangouts = []}){
         document.body.style.overflow = "hidden";
 
         return () => {
-        document.body.style.overflow = "auto";
+            document.body.style.overflow = "auto";
         };
     }, []);
 
@@ -28,7 +29,7 @@ export default function Home({hangouts = []}){
                 </header>
 
                 <div className="quick-actions">
-                    <button className="primary">➕ Create hangout</button>
+                    <Link to="/createhangout"><button className="primary">➕ Create hangout</button></Link>
                     <button className="secondary">🔗 Join hangout</button>
                 </div>
 
@@ -41,7 +42,9 @@ export default function Home({hangouts = []}){
                         Start one and we’ll help split the cost —  
                         even with kids included.
                         </p>
-                        <button className="primary">Create your first hangout</button>
+                        <Link to="/createhangout">
+                            <button className="primary">Create your first hangout</button>
+                        </Link>
                     </div>
                     ) : (
                     hangouts.map(h => (
