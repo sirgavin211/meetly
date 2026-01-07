@@ -7,7 +7,7 @@ const listeners = new Set();
 function createDefaultProfile(){
     return {
         first_name: "Guest",
-        last_name: "",
+        last_name: "",        
         age: null,
         hasFamily: false,
         family: {

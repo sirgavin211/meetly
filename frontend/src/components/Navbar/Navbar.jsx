@@ -1,7 +1,9 @@
 import "./Navbar.css";
 import LetterAvatar from "../LetterAvatar/LetterAvatar";
 import Logo from "../../assets/icons/logo2.0.png";
+
 import { useState, useEffect } from "react";
+
 import {Link} from "react-router-dom";
 import { useProfile } from "../../data/useProfile.js";
 
@@ -12,6 +14,8 @@ function Navbar({
     const [menuOpen, setMenuOpen] = useState(false);
     const profile = useProfile();
     const [firstName, setFirstName] = useState("");
+
+    
 
     useEffect(() => {
         if(!profile) return;

@@ -16,6 +16,8 @@ export default function Home({hangouts = []}){
         };
     }, []);
 
+
+    
     return <>
         <Navbar page="Home"/>
 
