@@ -2,6 +2,7 @@ import "./CreateHangout.css";
 import CoffeeImage from "../../assets/images/better.png";
 import Navbar from "../../components/Navbar/Navbar";
 import { useEffect, useState } from "react";
+import { useProfile } from "../../data/useProfile";
 
 export default function CreateHangout(){
 
@@ -13,6 +14,23 @@ export default function CreateHangout(){
         include_host: false,
     });
 
+    const profile = useProfile();
+    const [form_parameter, setFormParameter] = useState(0);
+    const [profileFilled, setFilled] = useState(false);
+
+    function continueForm(data){
+        
+        if(profile.first_name == "" || profile.last_name == "" || profile.age <=5){
+            setFilled(true);
+            return;
+        }
+
+        setFormParameter(form_parameter + 1);
+    }
+
+    useEffect(() => {
+        if(!profile) return;
+    }, [profile]);
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
@@ -35,7 +53,7 @@ export default function CreateHangout(){
 
                     <section className="form">
                         <div className="card">
-                            <label>What's your hangout?</label>
+                            {(form_parameter == 0) ? <label>What's your hangout?</label> : ""}
                             <input type="text" placeholder="Enter your hangout name"/>
 
                                 <label className="checkboxLabel">
@@ -52,7 +70,7 @@ export default function CreateHangout(){
 
                             <div className="line"></div>
                             <div className="bar">
-                                <input type="button" className="continue_button" value="Continue"></input>
+                                <input type="button" className="continue_button" value="Continue" onClick={continueForm()}></input>
                             </div>
 
                             <small className="caption">A memorable name for your hangout.</small>
