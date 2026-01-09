@@ -29,12 +29,16 @@ export default function CreateHangout(){
     //store data in the input text
     const [parameter, setParameter] = useState("");
 
+    //check if they filled out the input box
+    const [clickedButton, setClickedButton] = useState(false); 
+
     function continueForm(data){
         
         if(profile.first_name === "" || profile.last_name === "" || profile.age <= 5 || profile.first_name === "Guest"){
             setFilled(true);
             return;
         }
+
 
         setFormParameter(form_parameter + 1);
     }
@@ -88,6 +92,9 @@ export default function CreateHangout(){
                                 <small className="warning">Fill out your profile first please!</small>
                                 :
                                 <small className="caption">A memorable name for your hangout.</small>
+                            }
+                            {
+                                
                             }
                         </div>
                     </section>
