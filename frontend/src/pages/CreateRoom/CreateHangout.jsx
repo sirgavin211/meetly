@@ -46,7 +46,7 @@ export default function CreateHangout() {
         }
 
 
-        setBlink(false);
+        
 
         if (form_parameter == 0) {
             setHangoutData(prev => ({
@@ -54,12 +54,14 @@ export default function CreateHangout() {
                 name: parameter,
                 include_host: checked
             }));
-            setParameter("");
-            setChecked(false);
+            setParameter(hangout_data.locations[0]);
+            setChecked(!hangout_data.single_location);
+            setBlink(false);
+            setCaption("An address or general location for your hangout");
         }
 
 
-        setFormParameter(form_parameter + 1);
+        if(form_parameter < 1) setFormParameter(form_parameter + 1);
     }
 
     function backForm() {
@@ -67,6 +69,7 @@ export default function CreateHangout() {
         if (form_parameter === 1) {
             setParameter(hangout_data.name);
             setChecked(hangout_data.include_host);
+            setCaption("A memorable name for your hangout");
         }
 
         setFormParameter(form_parameter - 1);
@@ -118,17 +121,13 @@ export default function CreateHangout() {
                                     }
 
                                     if (form_parameter === 1) {
-                                        if (hangout_data.locations.length == 0) {
-                                            setHangoutData(prev => ({
-                                                ...prev,
-                                                locations: [prev.locations, e.target.value]
-                                            }));
-                                        } else {
-                                            setHangoutData(prev => ({
-                                                ...prev,
-                                                locations: [e.target.value, ...prev.locations.slice(1)]
-                                            }))
-                                        }
+                                        setParameter(e.target.value);
+                                        setHangoutData(prev => ({
+                                            ...prev,
+                                            locations: [e.target.value, ...prev.locations.slice(1)]
+                                        }))
+                                        
+                                        
                                     }
                                 }}
                             />
@@ -205,6 +204,13 @@ export default function CreateHangout() {
                                     checked={checked}
                                     onChange={(e) => {
                                         setChecked(e.target.checked)
+
+                                        if(form_parameter == 1){
+                                            setHangoutData(prev =>({
+                                                ...prev,
+                                                single_location: e.target.checked
+                                            }))
+                                        }
                                     }}
                                 />
                                 {form_parameter === 0 && "Include me (the host) in the hangout"}
