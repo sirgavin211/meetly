@@ -148,11 +148,20 @@
   border: 1px solid var(--text-color);
   margin-top: 10px;
   padding: 10px 10px;
+  box-sizing: border-box;
+}
+
+.card input[type="date"] {
+  width: 95%;
+  border: 1px solid var(--text-color);
+  margin-top: 10px;
+  padding: 10px 10px;
+  box-sizing: border-box;
 }
 
 .remove_button {
   position: absolute;
-  right: 1px;
+  right: 20px;
   top: 60%;
   transform: translateY(-50%);
   background: transparent;
@@ -237,4 +246,95 @@
 
 .card .continue_button.smaller {
   width: 220px;
+}
+
+
+/* Scrollable container that holds all location cards */
+.location-cards-scroll {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 10px;
+  margin-right: -15px;
+  /* Push scrollbar to the right */
+  padding-right: 15px;
+  /* Keep content properly spaced */
+
+}
+
+/* Scrollbar styles for the container */
+.location-cards-scroll::-webkit-scrollbar {
+  width: 6px;
+  -webkit-appearance: none;
+}
+
+.location-cards-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.location-cards-scroll::-webkit-scrollbar-thumb {
+  background: rgba(100, 98, 98, 0.4);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.location-cards-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 98, 98, 0.6);
+  background-clip: content-box;
+}
+
+/* Individual location card */
+.location_card {
+  background: var(--secondary-color);
+  border: 1px solid var(--text-color);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+  width: 90%;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+}
+
+.location_card small {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+/* Time inputs container */
+.times {
+  display: flex;
+  gap: 8px;
+}
+
+.times>div {
+  flex: 1;
+}
+
+.times label {
+  font-size: 10px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 3px;
+  color: var(--text-color);
+}
+
+.times input[type="time"] {
+  width: 90%;
+  box-sizing: border-box;
+  padding: 2px 2px;
+  border: 1px solid var(--text-color);
+  border-radius: 6px;
+  font-family: 'Poppins', sans-serif;
+  background: var(--primary-color);
+  color: var(--text-color);
+  font-size: 8px;
+}
+
+.location_card p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
 }

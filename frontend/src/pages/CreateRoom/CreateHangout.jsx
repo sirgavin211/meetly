@@ -10,10 +10,13 @@ export default function CreateHangout() {
     const [hangout_data, setHangoutData] = useState({
         name: "",
         date: "",
-        locations: [""],
+        locations: [
+            { address: "", ariveAt: "", departAt: "" }
+        ],
         optional_notes: "",
         include_host: false,
-        single_location: false,
+        multiple_locations: false,
+        host_id: getOrCreateUserId()
     });
 
     //get current profile data
@@ -31,8 +34,33 @@ export default function CreateHangout() {
     const [caption, setCaption] = useState("A memorable name for your hangout.");
     const [blink, setBlink] = useState(false);
 
+
+    async function createHangout() {
+        // try{
+        //     const
+        // }
+    }
+
+
+    function getOrCreateUserId() {
+        let userId = localStorage.getItem('userId');
+
+        if (!userId) {
+            userId = crypto.randomUUID();
+            localStorage.setItem('userId', userId);
+        }
+
+        return userId;
+    }
+
+
+
+
+    //continuing to parameters (what, where, when)
     function continueForm() {
 
+
+        //check whether profile and parameters are filled
         if (profile.first_name === "" || profile.last_name === "" || profile.age <= 5 || profile.first_name === "Guest") {
             setBlink(true);
             setCaption("Please fill out your profile first!");
@@ -46,39 +74,84 @@ export default function CreateHangout() {
         }
 
 
-        
 
+        //going from what to where
         if (form_parameter == 0) {
             setHangoutData(prev => ({
                 ...prev,
                 name: parameter,
                 include_host: checked
             }));
-            setParameter(hangout_data.locations[0]);
-            setChecked(!hangout_data.single_location);
+            setParameter(hangout_data.locations[0].address);
+            setChecked(hangout_data.multiple_locations);
             setBlink(false);
             setCaption("An address or general location for your hangout");
         }
 
 
-        if(form_parameter < 1) setFormParameter(form_parameter + 1);
+
+        //going from where to when
+        if (form_parameter == 1) {
+            setHangoutData(prev => ({
+                ...prev,
+                locations: [
+                    prev.locations[0],
+                    ...prev.locations.slice(1).filter(location => location.address.trim() !== "")
+                ]
+            }));
+
+            setCaption("A date and time for your hangout");
+            setParameter("");
+
+        }
+
+
+
+
+        //limits
+        if (form_parameter < 2) setFormParameter(form_parameter + 1);
     }
 
+
+
+
+    //going back parameters
     function backForm() {
 
+
+        //going from where to what
         if (form_parameter === 1) {
             setParameter(hangout_data.name);
             setChecked(hangout_data.include_host);
             setCaption("A memorable name for your hangout");
+            setHangoutData(prev => ({
+                ...prev,
+                locations: [
+                    prev.locations[0],  // Keep first one
+                    ...prev.locations.slice(1).filter(location => location.address.trim() !== "")  // Filter by .address
+                ]
+            }));
+        }
+
+        if (form_parameter === 2) {
+            setParameter(hangout_data.locations[0].address)
+            setCaption("An address or general location for your hangout.")
+            setBlink(false)
+            setChecked(hangout_data.multiple_locations)
         }
 
         setFormParameter(form_parameter - 1);
     }
 
+
+
+    //check for profile's existence
     useEffect(() => {
         if (!profile) return;
     }, [profile]);
 
+
+    //locks scrolling
     useEffect(() => {
         document.body.style.overflow = "hidden";
 
@@ -86,6 +159,14 @@ export default function CreateHangout() {
             document.body.style.overflow = "auto";
         };
     }, []);
+
+
+
+
+
+
+
+
 
 
     return (
@@ -97,43 +178,60 @@ export default function CreateHangout() {
                 <div className="content">
 
 
-
                     <h1>Create Hangout</h1>
                     <p>Plan easy hangouts, split the bill, and <br /> just show up.</p>
 
 
-
                     <section className="form">
 
+
+                        {/* main card */}
                         <div className="card">
+
+
                             {form_parameter == 0 && <label>What's your hangout?</label>}
                             {form_parameter == 1 && <label>Where's your hangout?</label>}
+                            {form_parameter == 2 && <label>When's your hangout?</label>}
+
+
                             <input
-                                type="text"
+                                type={
+                                    form_parameter !== 2 ? "text" :
+                                        "date"
+                                }
                                 placeholder={
                                     form_parameter === 0 ? "Enter your hangout name" :
-                                        form_parameter === 1 && "Enter a location"
+                                        form_parameter === 1 ? "Enter a location" :
+                                            form_parameter === 2 ? "Select a date" :
+                                                ""
                                 }
                                 value={parameter}
                                 onChange={(e) => {
-                                    if (form_parameter === 0) {
-                                        setParameter(e.target.value);
-                                    }
 
                                     if (form_parameter === 1) {
-                                        setParameter(e.target.value);
                                         setHangoutData(prev => ({
                                             ...prev,
-                                            locations: [e.target.value, ...prev.locations.slice(1)]
+                                            locations: [
+                                                { ...prev.locations[0], address: e.target.value },
+                                                ...prev.locations.slice(1)
+                                            ]
                                         }))
-                                        
-                                        
                                     }
+
+                                    if (form_parameter === 2) {
+                                        setHangoutData(prev => ({
+                                            ...prev,
+                                            date: e.target.value
+                                        }))
+                                    }
+                                    setParameter(e.target.value);
                                 }}
                             />
 
 
 
+
+                            {/* rendering multiple locations */}
                             {(form_parameter === 1 && checked) && (
                                 <>
                                     <div style={{
@@ -141,19 +239,22 @@ export default function CreateHangout() {
                                         overflowY: 'auto',
                                         marginTop: '10px',
                                         marginBottom: '10px',
-                                        paddingRight: '10px'
+                                        paddingRight: '10px',
+                                        overflowX: 'hidden'
                                     }}>
                                         {hangout_data.locations.slice(1).map((location, i) => {
                                             return (
                                                 <div key={i} style={{ position: 'relative', marginBottom: '10px' }}>
                                                     <input
                                                         type="text"
-                                                        value={location}
+                                                        value={location.address}
                                                         onChange={(e) => {
                                                             setHangoutData(prev => ({
                                                                 ...prev,
                                                                 locations: prev.locations.map((loc, index) =>
-                                                                    (i + 1) === index ? e.target.value : loc
+                                                                    (i + 1) === index
+                                                                        ? { ...loc, address: e.target.value }
+                                                                        : loc
                                                                 )
                                                             }))
                                                         }}
@@ -189,7 +290,7 @@ export default function CreateHangout() {
                                             console.log("added location")
                                             setHangoutData(prev => ({
                                                 ...prev,
-                                                locations: [...prev.locations, ""]
+                                                locations: [...prev.locations, { address: "", arriveAt: "", departAt: "" }]
                                             }))
                                         }}
                                     >
@@ -198,24 +299,84 @@ export default function CreateHangout() {
                                 </>
                             )}
 
-                            <label className="checkboxLabel">
-                                <input
-                                    type="checkbox"
-                                    checked={checked}
-                                    onChange={(e) => {
-                                        setChecked(e.target.checked)
 
-                                        if(form_parameter == 1){
-                                            setHangoutData(prev =>({
-                                                ...prev,
-                                                single_location: e.target.checked
-                                            }))
-                                        }
-                                    }}
-                                />
-                                {form_parameter === 0 && "Include me (the host) in the hangout"}
-                                {form_parameter === 1 && "Add multiple locations"}
-                            </label>
+                            {form_parameter !== 2 && (
+                                <label className="checkboxLabel">
+                                    <input
+                                        type="checkbox"
+                                        checked={checked}
+                                        onChange={(e) => {
+                                            setChecked(e.target.checked)
+
+                                            if (form_parameter == 1) {
+                                                setHangoutData(prev => ({
+                                                    ...prev,
+                                                    multiple_locations: e.target.checked
+                                                }))
+                                            }
+                                        }}
+                                    />
+                                    {form_parameter === 0 && "Include me (the host) in the hangout"}
+                                    {form_parameter === 1 && "Add multiple locations"}
+                                </label>
+                            )}
+
+                            {form_parameter === 2 && (
+                                <>
+                                    <div className="location-cards-scroll" style={{
+                                        maxHeight: '100px',
+                                        overflowY: 'auto',
+                                        marginTop: '10px',
+                                        marginBottom: '10px',
+                                        paddingRight: '10px',
+                                        overflowX: 'hidden'
+
+                                    }}>
+                                        {hangout_data.locations.map((location, i) => {
+                                            return (
+                                                <div className="location_card">
+                                                    <small>{location.address}</small>
+
+                                                    <div className="times">
+                                                        <input
+                                                            type="time"
+                                                            placeholder="Arrive"
+                                                            value={location.arriveAt}
+                                                            onChange={(e) => {
+                                                                setHangoutData(prev => ({
+                                                                    ...prev,
+                                                                    locations: prev.locations.map((loc, index) =>
+                                                                        index === i
+                                                                            ? { ...loc, arriveAt: e.target.value }
+                                                                            : loc
+                                                                    )
+                                                                }))
+                                                            }}
+                                                        />
+                                                        <p>to</p>
+                                                        <input
+                                                            type="time"
+                                                            placeholder="Leave"
+                                                            value={location.departAt}
+                                                            onChange={(e) => {
+                                                                setHangoutData(prev => ({
+                                                                    ...prev,
+                                                                    locations: prev.locations.map((loc, index) =>
+                                                                        index === i
+                                                                            ? { ...loc, departAt: e.target.value }
+                                                                            : loc
+                                                                    )
+                                                                }))
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </>
+                            )}
+
 
                             <div className="line"></div>
                             <div className="bar">

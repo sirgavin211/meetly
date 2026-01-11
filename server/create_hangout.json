@@ -1,0 +1,15 @@
+{
+    "name": "Maragame Udon Hang",
+    "date": "1/2/26",
+    "locations": [
+        {
+            "address": "Maragame Udon (Alameda)",
+            "ariveAt": "12:30 PM",
+            "departAt": "5:30 PM"
+        }
+    ],
+    "optional_notes": "Bring money",
+    "include_host": false,
+    "multiple_locations": false,
+    "host_id": "eb421iofwe41oawl"
+}
