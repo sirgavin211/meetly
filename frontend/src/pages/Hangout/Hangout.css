@@ -1,0 +1,15 @@
+.hangout_page {
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: var(--primary-color);
+  /* updated per request */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  padding-left: 50px;
+}
+

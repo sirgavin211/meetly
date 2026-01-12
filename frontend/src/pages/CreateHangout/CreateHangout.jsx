@@ -34,6 +34,17 @@ export default function CreateHangout() {
     const [blink, setBlink] = useState(false);
 
 
+
+    function timeToMinutes(timeStr) {
+        const [time, period] = timeStr.split(' ');
+        let [hours, minutes] = time.split(':').map(Number);
+        
+        if (period === 'PM' && hours !== 12) hours += 12;
+        if (period === 'AM' && hours === 12) hours = 0;
+        
+        return hours * 60 + minutes;
+    }
+
     async function createHangout() {
         try {
             const response = await fetch("http://localhost:5000/api/createhangout", {
@@ -133,6 +144,20 @@ export default function CreateHangout() {
                 setCaption("Please fill out the times for each location.")
                 return;
             }
+
+            const correctTimes = hangout_data.locations.every(location =>
+                timeToMinutes(location.arriveAt) < timeToMinutes(location.departAt)
+            );
+
+            if(!correctTimes){
+                setBlink(true);
+                setCaption("Please make sure the arrival times are before the departure times")
+                return;
+            }
+
+            setBlink(false);
+            setCaption("A date and time for your hangout.");
+            
             createHangout();
         }
 
@@ -426,7 +451,7 @@ export default function CreateHangout() {
                                 <input type="button" className={`continue_button ${form_parameter > 0 ? 'smaller' : ''}`} value="Continue" onClick={continueForm}></input>
                             </div>
 
-                            {
+                            { 
                                 blink ?
                                     <small className="warning">{caption}</small>
                                     :

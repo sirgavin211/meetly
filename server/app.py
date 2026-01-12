@@ -125,7 +125,7 @@ if(config.build_database):
 app = Flask(__name__)
 app.config.from_object(Config)
 
-CORS(app, origins=["http://localhost:5173"])  # allows React frontend to talk to Flask
+CORS(app, origins=["http://localhost:5173", "https://nonphrenetic-tanya-ironically.ngrok-free.dev"])  # allows React frontend to talk to Flask
 
 
 def generate_code():
