@@ -11,12 +11,11 @@ export default function CreateHangout() {
         name: "",
         date: "",
         locations: [
-            { address: "", ariveAt: "", departAt: "" }
+            { address: "", arriveAt: "", departAt: "" }
         ],
         optional_notes: "",
         include_host: false,
         multiple_locations: false,
-        host_id: getOrCreateUserId()
     });
 
     //get current profile data
@@ -36,9 +35,27 @@ export default function CreateHangout() {
 
 
     async function createHangout() {
-        // try{
-        //     const
-        // }
+        try {
+            const response = await fetch("http://localhost:5000/api/createhangout", {
+                method: "POST",
+                headers: {
+                    "Content-type": 'application/json'
+                },
+                body: JSON.stringify({
+                    ...hangout_data,
+                    host_id: getOrCreateUserId()
+                })
+            })
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Hangout created! Code:', data.code);
+                // Show success, redirect, etc.
+            }
+        }
+        catch (error) {
+            console.log('Error: ', error)
+        }
     }
 
 
@@ -101,10 +118,23 @@ export default function CreateHangout() {
             }));
 
             setCaption("A date and time for your hangout");
-            setParameter("");
+            setParameter(hangout_data.date);
 
         }
 
+        //sending the full hangout_data
+        if (form_parameter == 2) {
+            const allFilled = hangout_data.locations.every(location =>
+                location.arriveAt !== "" && location.departAt !== ""
+            );
+
+            if (!allFilled) {
+                setBlink(true);
+                setCaption("Please fill out the times for each location.")
+                return;
+            }
+            createHangout();
+        }
 
 
 
@@ -334,7 +364,7 @@ export default function CreateHangout() {
                                     }}>
                                         {hangout_data.locations.map((location, i) => {
                                             return (
-                                                <div className="location_card">
+                                                <div key={i} className="location_card">
                                                     <small>{location.address}</small>
 
                                                     <div className="times">
