@@ -2,10 +2,17 @@ import './Hangout.css';
 import CoffeeImage from "../../assets/images/better.png"
 import Navbar from '../../components/Navbar/Navbar';
 import { useEffect } from 'react';
+import { useProfile } from '../../data/useProfile';
 
 
 
 export default function Hangout(props) {
+
+    const profile = useProfile();
+
+    useEffect(() => {
+        if (!profile) return;
+    }, [profile])
 
     useEffect(() => {
         console.log(props.data.locations[0].arriveAt);
@@ -14,13 +21,21 @@ export default function Hangout(props) {
 
     return (
         <>
-            <Navbar page="Hangout"/>
+            <Navbar page="Hangout" />
 
             <div className="hangout_page">
                 <div className='left_column'>
                     <div className='information_card'>
-                        <h3>{props.data.name}</h3>
-                        <p>{`${props.data.locations[0].arriveAt} to ${props.data.locations[props.data.locations.length-1].departAt}`}</p>
+                        <h1>{props.data.name}</h1>
+                        <div className='greeting_box'>
+                            <strong>{`Hi ${profile.first_name}!`}</strong>
+                            <span>Are you ready for your hangout?</span>
+                        </div>
+
+                        <div className='textbox'>
+                            <p>{`${props.data.locations[0].arriveAt} to ${props.data.locations[props.data.locations.length - 1].departAt}`}</p>
+                        </div>
+
                     </div>
 
                     <div className='location_card'>
@@ -28,27 +43,35 @@ export default function Hangout(props) {
                         {props.data.locations.map((location, i) => {
                             return (
                                 <div className='location' key={i}>
-                                    
+
                                 </div>
                             );
                         })}
                     </div>
 
                     <div className='bill_card'>
-
+                        <h3>Bill</h3>
+                        <p>Rates:</p>
+                        <p>Total Bill</p>
                     </div>
+
+
                 </div>
 
                 <div className='middle_column'>
-
+                    <h3>Attendees</h3>
                 </div>
 
                 <div className='right_column'>
+                    <div className='optional_notes'>
 
+                    </div>
+
+                    <div className='contact_info'>
+
+                    </div>
                 </div>
-                
             </div>
-            
         </>
     )
 }

@@ -79,10 +79,7 @@
   display: inline-flex;
   align-items: center;
   margin-top: 10px;
-  display: block;
-  /* inset the checkbox slightly from the card's left edge
-     card has padding-left: 20px; margin-left: -12px results in ~8px gap */
-  margin-left: -12px;
+  gap: 8px;
 }
 
 .card .add_location {
@@ -176,17 +173,13 @@
 
 /* Keep checkboxes small and visible */
 .card input[type="checkbox"] {
-  width: auto;
-  height: auto;
-  margin-right: 12px;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
   vertical-align: middle;
-  /* Enlarge the native checkbox for better touch targets */
-  transform: scale(1.5);
-  -webkit-transform: scale(1.5);
-  transform-origin: left center;
-  /* Keep layout stable after scaling */
-  display: inline-block;
-  margin-left: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 

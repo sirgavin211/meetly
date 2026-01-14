@@ -17,7 +17,7 @@ import {
 } from "../../data/profilemanager.js"
 
 
-function Profile(){
+function Profile() {
 
 
     const profile = useProfile();
@@ -31,7 +31,7 @@ function Profile(){
     const [children, setChildren] = useState([]);
     const [adults, setAdults] = useState([]);
 
-    
+
     useEffect(() => {
 
         document.body.style.overflow = "hidden";
@@ -42,7 +42,7 @@ function Profile(){
     }, []);
 
     useEffect(() => {
-        if(!profile) return;
+        if (!profile) return;
 
         setFirstName(profile.first_name ?? "");
         setLastName(profile.last_name ?? "");
@@ -51,7 +51,7 @@ function Profile(){
 
         setChildren(profile.family?.children ?? []);
         setAdults(profile.family?.adults ?? []);
-    
+
     }, [profile]);
 
 
@@ -61,7 +61,7 @@ function Profile(){
 
     return (
         <>
-            <Navbar page="Profile"/>
+            <Navbar page="Profile" />
             <div className="profile">
 
                 <div className="content">
@@ -110,26 +110,25 @@ function Profile(){
                                         updateHasFamily(e.target.checked);
                                     }}
                                 />
-                            
                                 Add family
                             </label>
                         </div>
 
                         <div className="profile-right">
-                            {enabled ? 
+                            {enabled ?
                                 <>
                                     <p>Family</p>
                                     <small>Who usually comes with you?</small>
-                                    <p>👤 You {age>=18 ? "(adult)" : ""}</p>
+                                    <p>👤 You {age >= 18 ? "(adult)" : ""}</p>
 
                                     <div className="children-list">
                                         {children.map((child, i) => (
                                             <div key={i} className="child-row">
                                                 <span className="emoji">👦</span>
-                                                <input 
-                                                    type="text" 
+                                                <input
+                                                    type="text"
                                                     value={child}
-                                                    onChange={(e) =>{
+                                                    onChange={(e) => {
                                                         setChildren(updateChild(i, e.target.value));
                                                     }}
                                                 />
@@ -137,7 +136,7 @@ function Profile(){
                                                     const updated = removeChild(i);
                                                     setChildren(updated);
                                                 }}>X</button>
-                                            </div>    
+                                            </div>
                                         ))}
                                         {adults.map((adult, i) => (
                                             <div key={i} className="adult-row">
@@ -145,7 +144,7 @@ function Profile(){
                                                 <input
                                                     type="text"
                                                     value={adult}
-                                                    onChange={(e) =>{
+                                                    onChange={(e) => {
                                                         setAdults(updateAdult(i, e.target.value));
                                                     }}
                                                 />
@@ -156,33 +155,33 @@ function Profile(){
                                             </div>
                                         ))}
 
-                                        
+
                                     </div>
 
-                                    <button className="add-child" onClick={() =>{
-                                        const updated = addChild("Child " + (children.length+1));
+                                    <button className="add-child" onClick={() => {
+                                        const updated = addChild("Child " + (children.length + 1));
                                         setChildren(updated);
                                     }}>+ Add child</button>
-                                    <button className="add-adult" onClick={() =>{
-                                        const updated = addAdult("Adult " + (adults.length+1));
+                                    <button className="add-adult" onClick={() => {
+                                        const updated = addAdult("Adult " + (adults.length + 1));
                                         setAdults(updated);
                                     }}>+ Add adult</button>
                                 </>
-                                    
-                            :""} 
+
+                                : ""}
                         </div>
 
                     </div>
 
                 </div>
-    
+
                 <div className="background-elements">
-                    <img className="coffee-image" src={CoffeeImage} alt="man drinking cofee on couch"/>
+                    <img className="coffee-image" src={CoffeeImage} alt="man drinking cofee on couch" />
                 </div>
-           
+
             </div>
         </>
-        
+
     );
 }
 

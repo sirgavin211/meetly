@@ -1,17 +1,78 @@
 .hangout_page {
-  max-height: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
   width: 100%;
-  height: 100%;
   margin: 0;
   background-color: var(--primary-color);
-  /* updated per request */
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
   position: relative;
   font-family: 'Poppins', sans-serif;
   padding-left: 50px;
+  overflow: hidden;
 }
 
-/* /config/.nvm/versions/node/v24.13.0/bin/npm */
+body {
+  overflow: hidden;
+}
 
+.left_column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 100px;
+}
+
+.middle_column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.right_column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.information_card {
+  border: 1px solid var(--border-color);
+  padding: 12px 16px 16px;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.information_card .greeting_box {
+  border: 3px solid #93a17a;
+  border-radius: 5px;
+  padding: 11px 16px;
+  flex-direction: column;
+  display: flex;
+
+}
+
+.information_card span,
+strong {
+  font-size: 16px;
+  font-family: "Noto Sans", "Arial", "Droid Sans", sans-serif;
+  color: var(--text-color);
+}
+
+.information_card h1 {
+  font-size: 24px;
+  margin: 4px 0;
+  color: var(--text-color);
+}
+
+
+
+.information_card p {
+  font-size: 12px;
+  margin: 4px 0;
+}
