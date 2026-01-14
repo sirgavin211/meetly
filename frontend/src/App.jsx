@@ -6,14 +6,28 @@ import CreateHangout from './pages/CreateHangout/CreateHangout.jsx';
 import Hangout from './pages/Hangout/Hangout.jsx';
 
 function App() {
-
+  const data = {
+    "name": "Maragame Udon Hang",
+    "date": "1/2/26",
+    "locations": [
+        {
+            "address": "Maragame Udon (Alameda)",
+            "arriveAt": "12:30 PM",
+            "departAt": "5:30 PM"
+        }
+    ],
+    "optional_notes": "Bring money",
+    "include_host": false,
+    "multiple_locations": false,
+    "host_id": "eb421iofwe41oawl"
+  }
 
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="profile" element={<Profile />} />
       <Route path="createhangout" element={<CreateHangout />} />
-      <Route path="hangout" element={<Hangout />} />
+      <Route path="hangout" element={<Hangout data={data}/>} />
     </Routes>
   )
 }

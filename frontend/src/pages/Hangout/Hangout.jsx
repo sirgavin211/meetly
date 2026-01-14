@@ -1,11 +1,16 @@
 import './Hangout.css';
 import CoffeeImage from "../../assets/images/better.png"
 import Navbar from '../../components/Navbar/Navbar';
-import { data } from 'react-router-dom';
+import { useEffect } from 'react';
+
 
 
 export default function Hangout(props) {
 
+    useEffect(() => {
+        console.log(props.data.locations[0].arriveAt);
+        console.log(props.data.locations[props.data.locations.length - 1].departAt)
+    })
 
     return (
         <>
@@ -15,16 +20,16 @@ export default function Hangout(props) {
                 <div className='left_column'>
                     <div className='information_card'>
                         <h3>{props.data.name}</h3>
-                        <p>{data.locations[0].arriveAt + " " + data.locations[data.locations.length -1]}</p>
+                        <p>{`${props.data.locations[0].arriveAt} to ${props.data.locations[props.data.locations.length-1].departAt}`}</p>
                     </div>
 
                     <div className='location_card'>
                         <h3>Locations</h3>
-                        {data.locations.map((location, i) => {
+                        {props.data.locations.map((location, i) => {
                             return (
-                                <>
+                                <div className='location' key={i}>
                                     
-                                </>
+                                </div>
                             );
                         })}
                     </div>

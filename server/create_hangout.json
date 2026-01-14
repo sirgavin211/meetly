@@ -4,7 +4,7 @@
     "locations": [
         {
             "address": "Maragame Udon (Alameda)",
-            "ariveAt": "12:30 PM",
+            "arriveAt": "12:30 PM",
             "departAt": "5:30 PM"
         }
     ],
