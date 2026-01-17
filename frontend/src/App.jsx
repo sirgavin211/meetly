@@ -4,17 +4,18 @@ import Home from "./pages/Home/Home.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import CreateHangout from './pages/CreateHangout/CreateHangout.jsx';
 import Hangout from './pages/Hangout/Hangout.jsx';
+import { Analytics } from "@vercel/analytics/next";
 
 function App() {
   const data = {
     "name": "Maragame Udon Hang",
     "date": "1/2/26",
     "locations": [
-        {
-            "address": "Maragame Udon (Alameda)",
-            "arriveAt": "12:30 PM",
-            "departAt": "5:30 PM"
-        }
+      {
+        "address": "Maragame Udon (Alameda)",
+        "arriveAt": "12:30 PM",
+        "departAt": "5:30 PM"
+      }
     ],
     "optional_notes": "Bring money",
     "include_host": false,
@@ -27,8 +28,9 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="profile" element={<Profile />} />
       <Route path="createhangout" element={<CreateHangout />} />
-      <Route path="hangout" element={<Hangout data={data}/>} />
+      <Route path="hangout" element={<Hangout data={data} />} />
     </Routes>
+
   )
 }
 
