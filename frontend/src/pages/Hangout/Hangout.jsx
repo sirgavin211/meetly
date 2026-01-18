@@ -28,13 +28,18 @@ export default function Hangout(props) {
                     <div className='information_card'>
                         <h1>{props.data.name}</h1>
                         <div className='greeting_box'>
-                            <strong>{`Hi ${profile.first_name}!`}</strong>
-                            <span>Are you ready for your hangout?</span>
+                            
+                            <div className='textbox'>
+                                <strong>{`Hi ${profile.first_name}!`}</strong>
+                                <span>Are you ready for your hangout?</span>
+                            </div>
+                            
+                            <h1>👋</h1>
                         </div>
 
-                        <div className='textbox'>
-                            <p>{`${props.data.locations[0].arriveAt} to ${props.data.locations[props.data.locations.length - 1].departAt}`}</p>
-                        </div>
+                  
+                        <p>{`${props.data.locations[0].arriveAt} to ${props.data.locations[props.data.locations.length - 1].departAt}`}</p>
+                        
 
                     </div>
 

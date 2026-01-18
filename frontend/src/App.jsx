@@ -4,7 +4,6 @@ import Home from "./pages/Home/Home.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import CreateHangout from './pages/CreateHangout/CreateHangout.jsx';
 import Hangout from './pages/Hangout/Hangout.jsx';
-import { Analytics } from "@vercel/analytics/next";
 
 function App() {
   const data = {
