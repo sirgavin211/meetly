@@ -14,7 +14,22 @@ function App() {
         "address": "Maragame Udon (Alameda)",
         "arriveAt": "12:30 PM",
         "departAt": "5:30 PM"
-      }
+      },
+      {
+        "address": "Evan's House",
+        "arriveAt": "5:30 PM",
+        "departAt": "8:30 PM"
+      },
+      {
+        "address": "Evan's House",
+        "arriveAt": "5:30 PM",
+        "departAt": "8:30 PM"
+      },
+      {
+        "address": "Evan's House",
+        "arriveAt": "5:30 PM",
+        "departAt": "8:30 PM"
+      },
     ],
     "optional_notes": "Bring money",
     "include_host": false,

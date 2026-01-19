@@ -38,10 +38,10 @@ export default function CreateHangout() {
     function timeToMinutes(timeStr) {
         const [time, period] = timeStr.split(' ');
         let [hours, minutes] = time.split(':').map(Number);
-        
+
         if (period === 'PM' && hours !== 12) hours += 12;
         if (period === 'AM' && hours === 12) hours = 0;
-        
+
         return hours * 60 + minutes;
     }
 
@@ -149,7 +149,7 @@ export default function CreateHangout() {
                 timeToMinutes(location.arriveAt) < timeToMinutes(location.departAt)
             );
 
-            if(!correctTimes){
+            if (!correctTimes) {
                 setBlink(true);
                 setCaption("Please make sure the arrival times are before the departure times")
                 return;
@@ -157,7 +157,7 @@ export default function CreateHangout() {
 
             setBlink(false);
             setCaption("A date and time for your hangout.");
-            
+
             createHangout();
         }
 
@@ -351,6 +351,7 @@ export default function CreateHangout() {
                                     >
                                         + Add
                                     </button>
+                                    <br></br>
                                 </>
                             )}
 
@@ -451,7 +452,7 @@ export default function CreateHangout() {
                                 <input type="button" className={`continue_button ${form_parameter > 0 ? 'smaller' : ''}`} value="Continue" onClick={continueForm}></input>
                             </div>
 
-                            { 
+                            {
                                 blink ?
                                     <small className="warning">{caption}</small>
                                     :
