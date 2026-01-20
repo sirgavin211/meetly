@@ -1,7 +1,7 @@
 import './Hangout.css';
 import CoffeeImage from "../../assets/images/better.png"
 import Navbar from '../../components/Navbar/Navbar';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useProfile } from '../../data/useProfile';
 
 
@@ -10,14 +10,22 @@ export default function Hangout(props) {
 
     const profile = useProfile();
 
+    const adultRate = useState(-1);
+    const childRate = useState(-1);
+
+    const usePercentage = useState(true);
+
+
     useEffect(() => {
         if (!profile) return;
     }, [profile])
+
 
     useEffect(() => {
         console.log(props.data.locations[0].arriveAt);
         console.log(props.data.locations[props.data.locations.length - 1].departAt)
     })
+
 
     return (
         <>
@@ -78,10 +86,23 @@ export default function Hangout(props) {
 
                     </div>
 
+                    {/* 
+                    ┌─────────────────────────────────────────┐
+                    │ Bill                                    │
+                    │                                         │
+                    │ Adult $25 • Child $12.50 • Toddler Free │
+                    │                                         │
+                    │ Total: $87.50                           │
+                    │ (2 Adults, 3 Children, 1 Toddler)       │
+                    └─────────────────────────────────────────┘ */}
+
                     <div className='bill_card'>
                         <h3>Bill</h3>
-                        <p>Rates:</p>
-                        <p>Total Bill</p>
+                        {usePercentage ?
+                            <p>💰 Adult {adultRate}% • Child {childRate}%</p> :
+                            <p>💰 Adult ${adultRate} • Child ${childRate}</p>
+                        }
+                        <p>🎟️ Total Bill: </p>
                     </div>
 
 
