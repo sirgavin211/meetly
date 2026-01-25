@@ -1,9 +1,10 @@
-import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from "./pages/Home/Home.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import CreateHangout from './pages/CreateHangout/CreateHangout.jsx';
 import Hangout from './pages/Hangout/Hangout.jsx';
+import JoinHangout from './pages/JoinHangout/JoinHangout.jsx';
+
 
 function App() {
   const data = {
@@ -43,6 +44,7 @@ function App() {
       <Route path="profile" element={<Profile />} />
       <Route path="createhangout" element={<CreateHangout />} />
       <Route path="hangout" element={<Hangout data={data} />} />
+      <Route path="joinhangout" element={<JoinHangout />} />
     </Routes>
 
   )
