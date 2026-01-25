@@ -57,7 +57,7 @@ body {
   padding: 11px 16px;
   flex-direction: row;
   display: flex;
-  gap: 100px'
+  gap: 100px;
 
 }
 
@@ -177,7 +177,9 @@ strong {
   margin: 0;
 }
 
-.bill_card {}
+.bill_card h3 {
+  margin: 0;
+}
 
 .bill_card p {
   background-color: var(--darker-color);
