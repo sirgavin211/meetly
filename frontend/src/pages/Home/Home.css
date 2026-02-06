@@ -132,3 +132,18 @@ button.secondary {
   opacity: 0.85;
   margin-bottom: 1.25rem;
 }
+
+.hangouts h3 {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+}
+
+.hangouts button {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+}
+
+
+.empty-card button {
+  width: 70%;
+}

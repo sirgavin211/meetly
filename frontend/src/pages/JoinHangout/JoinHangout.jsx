@@ -12,11 +12,38 @@ function JoinHangout() {
   const [show_error, enableMessage] = useState(false);
 
 
+
   function send_join_request() {
+
+
     if (code_regex.test(code) === false) {
       enableMessage(true);
+      console.log("Invalid code");
       return;
     }
+
+
+
+    fetch('http://localhost:5000/api/joinhangout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        code: code
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
+
+
+
   }
 
 
@@ -39,7 +66,7 @@ function JoinHangout() {
           <input
             type="button"
             value="Submit"
-
+            onClick={send_join_request}
           />
 
           {show_error &&

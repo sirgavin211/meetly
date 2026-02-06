@@ -4,6 +4,9 @@ import Profile from "./pages/Profile/Profile.jsx";
 import CreateHangout from './pages/CreateHangout/CreateHangout.jsx';
 import Hangout from './pages/Hangout/Hangout.jsx';
 import JoinHangout from './pages/JoinHangout/JoinHangout.jsx';
+import { AuthProvider } from './data/auth/AuthContext';
+import SignIn from './pages/SignIn/SignIn.jsx';
+
 
 
 function App() {
@@ -39,14 +42,16 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="profile" element={<Profile />} />
-      <Route path="createhangout" element={<CreateHangout />} />
-      <Route path="hangout" element={<Hangout data={data} />} />
-      <Route path="joinhangout" element={<JoinHangout />} />
-    </Routes>
-
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="createhangout" element={<CreateHangout />} />
+        <Route path="hangout" element={<Hangout data={data} />} />
+        <Route path="joinhangout" element={<JoinHangout />} />
+        <Route path="signin" element={<SignIn />} />
+      </Routes>
+    </AuthProvider>
   )
 }
 
