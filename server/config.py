@@ -3,4 +3,5 @@ class Config:
     SECRET_KEY = "dev-secret-key"  # replace later
 
 
-build_database = False
+build_database = True
+
